@@ -1,8 +1,8 @@
 pipeline {
     parameters {
         string(defaultValue: "${env.PLATFORM_1C_VERSION}", description: 'Версия платформы 1С', name: 'PLATFORM_1C_VERSION')
-        string(defaultValue: "${env.ERROR_COMMENT}", description: 'Проверять комментарии к хранилищу', name: 'ERROR_COMMENT')
-        string(defaultValue: "${env.GIT_REMOTE}", description: 'Выполнять push pull в удаленный репозиторий', name: 'GIT_REMOTE')
+        booleanParam(defaultValue: env.ERROR_COMMENT == null ? true : env.ERROR_COMMENT, description: 'Проверять комментарии к хранилищу', name: 'ERROR_COMMENT')
+        booleanParam(defaultValue: env.GIT_REMOTE == null ? true : env.GIT_REMOTE, description: 'Выполнять push pull в удаленный репозиторий', name: 'GIT_REMOTE')
         string(defaultValue: "${env.EXTENSION_1C_NAME}", description: 'Имя расширения 1С', name: 'EXTENSION_1C_NAME')
         string(defaultValue: "${env.STORAGE_PATH}", description: 'Путь к хранилищу 1С', name: 'STORAGE_PATH')
         string(defaultValue: "${env.LOCAL_REPO_PATH}", description: 'Путь к локальному репозиторию', name: 'LOCAL_REPO_PATH')
