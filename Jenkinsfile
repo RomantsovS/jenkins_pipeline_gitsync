@@ -52,7 +52,7 @@ pipeline {
                         }
 
                         if(params.EXTENSION_1C_NAME) {
-                            command = command + " --extension PDE ${params.EXTENSION_1C_NAME}"
+                            command = command + " --extension ${params.EXTENSION_1C_NAME}"
                         } 
 
                         command = command + " ${params.STORAGE_PATH} ${params.LOCAL_REPO_PATH}"
