@@ -6,7 +6,6 @@ pipeline {
     string(defaultValue: "${env.STORAGE_PATH}", description: 'Путь к хранилищу 1С', name: 'STORAGE_PATH')
     string(defaultValue: "${env.LOCAL_REPO_PATH}", description: 'Путь к локальному репозиторию', name: 'LOCAL_REPO_PATH')
     string(defaultValue: "${env.jenkinsAgent}", description: 'Нода дженкинса, на которой запускать пайплайн. По умолчанию master', name: 'jenkinsAgent')
-    }
 
     agent {
         label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "master" : env.jenkinsAgent}"
