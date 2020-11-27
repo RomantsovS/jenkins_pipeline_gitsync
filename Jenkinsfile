@@ -1,5 +1,6 @@
 pipeline {
     parameters {
+        string(description: 'Таймаут запуска gitsync в минутах', name: 'TIMEOUT_FOR_RUN_GITSYNC_STAGE')
         string(description: 'Версия платформы 1С', name: 'PLATFORM_1C_VERSION')
         booleanParam(defaultValue: true, description: 'Проверять комментарии к хранилищу', name: 'ERROR_COMMENT')
         booleanParam(defaultValue: true, description: 'Выполнять push pull в удаленный репозиторий', name: 'GIT_REMOTE')
@@ -37,7 +38,7 @@ pipeline {
         stage('run gitsync') {
             steps {
                 script {
-                    try { timeout(time: env.TIMEOUT_FOR_COMLILE_TESTS_STAGE.toInteger(), unit: 'MINUTES') {
+                    try { timeout(time: params.TIMEOUT_FOR_RUN_GITSYNC_STAGE.toInteger(), unit: 'MINUTES') {
                         def ib_connection = "/S${env.SERVER_1C}:${env.CLUSTER_1C_PORT}\\${env.TEST_BASE_NAME}"
                         
                         def command = "gitsync --v8version ${params.PLATFORM_1C_VERSION} --verbose sync --limit 1 ${params.STORAGE_PATH} ${params.LOCAL_REPO_PATH}"
