@@ -41,7 +41,7 @@ pipeline {
                     try { timeout(time: params.TIMEOUT_FOR_RUN_GITSYNC_STAGE.toInteger(), unit: 'MINUTES') {
                         def ib_connection = "/S${env.SERVER_1C}:${env.CLUSTER_1C_PORT}\\${env.TEST_BASE_NAME}"
                         
-                        def command = "gitsync --v8version ${params.PLATFORM_1C_VERSION} --verbose sync --limit 1 ${params.STORAGE_PATH} ${params.LOCAL_REPO_PATH}"
+                        def command = "gitsync --v8version ${params.PLATFORM_1C_VERSION} --verbose sync --limit 1"
 
                         if(params.ERROR_COMMENT) {
                             command = command + " --error-comment"
@@ -54,6 +54,8 @@ pipeline {
                         if(params.EXTENSION_1C_NAME) {
                             command = command + " --extension PDE ${params.EXTENSION_1C_NAME}"
                         } 
+
+                        command = command + " ${params.STORAGE_PATH} ${params.LOCAL_REPO_PATH}"
 
                         returnCode = commonMethods.cmdReturnStatusCode(command)
     
