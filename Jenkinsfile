@@ -55,7 +55,7 @@ pipeline {
                             command = command + " --extension ${params.EXTENSION_1C_NAME}"
                         } 
 
-                        command = command + " ${params.STORAGE_PATH} ${params.LOCAL_REPO_PATH}"
+                        command = command + " ${params.STORAGE_PATH} ${env.WORKSPACE}${params.LOCAL_REPO_PATH}"
 
                         returnCode = commonMethods.cmdReturnStatusCode(command)
     
