@@ -1,6 +1,6 @@
 pipeline {
     parameters {
-        string(description: 'Таймаут запуска gitsync в минутах', name: 'TIMEOUT_FOR_RUN_GITSYNC_STAGE')
+        string(defaultValue: "${env.TIMEOUT_FOR_RUN_GITSYNC_STAGE}", description: 'Таймаут запуска gitsync в минутах', name: 'TIMEOUT_FOR_RUN_GITSYNC_STAGE')
         string(description: 'Версия платформы 1С', name: 'PLATFORM_1C_VERSION')
         booleanParam(defaultValue: true, description: 'Проверять комментарии к хранилищу', name: 'ERROR_COMMENT')
         booleanParam(defaultValue: true, description: 'Выполнять push pull в удаленный репозиторий', name: 'GIT_REMOTE')
