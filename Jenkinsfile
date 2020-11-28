@@ -6,7 +6,7 @@ pipeline {
         booleanParam(defaultValue: true, description: 'Выполнять push pull в удаленный репозиторий', name: 'GIT_REMOTE')
         string(defaultValue: "${env.EXTENSION_1C_NAME}", description: 'Имя расширения 1С', name: 'EXTENSION_1C_NAME')
         string(defaultValue: "${env.STORAGE_PATH}", description: 'Путь к хранилищу 1С', name: 'STORAGE_PATH')
-        string(defaultValue: "${env.LOCAL_REPO_PATH}", description: 'Путь к локальному репозиторию', name: 'LOCAL_REPO_PATH')
+        string(defaultValue: "${env.LOCAL_REPO_PATH_CF}", description: 'Каталог исходников внутри локальной копии git-репозитория', name: 'LOCAL_REPO_PATH_CF')
         string(defaultValue: "${env.jenkinsAgent}", description: 'Нода дженкинса, на которой запускать пайплайн. По умолчанию master', name: 'jenkinsAgent')
     }
 
@@ -55,14 +55,14 @@ pipeline {
                             command = command + " --extension ${params.EXTENSION_1C_NAME}"
                         } 
 
-                        command = command + " ${params.STORAGE_PATH} ${env.WORKSPACE}${params.LOCAL_REPO_PATH}"
+                        command = command + " ${params.STORAGE_PATH} ${env.WORKSPACE}${params.LOCAL_REPO_PATH_CF}"
 
                         returnCode = commonMethods.cmdReturnStatusCode(command)
     
                         echo "cmd status code $returnCode"
     
                         if (returnCode != 0) {
-                            commonMethods.echoAndError("Error running gitsync ${STORAGE_PATH} at ${LOCAL_REPO_PATH}")
+                            commonMethods.echoAndError("Error running gitsync ${STORAGE_PATH} at ${LOCAL_REPO_PATH_CF}")
                         }
                     }}
                     catch (Throwable excp) {
