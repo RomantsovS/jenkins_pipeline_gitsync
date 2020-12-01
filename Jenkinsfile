@@ -41,7 +41,16 @@ pipeline {
                     try { timeout(time: params.TIMEOUT_FOR_RUN_GITSYNC_STAGE.toInteger(), unit: 'MINUTES') {
                         def ib_connection = "/S${env.SERVER_1C}:${env.CLUSTER_1C_PORT}\\${env.TEST_BASE_NAME}"
                         
-                        def command = "gitsync --v8version ${params.PLATFORM_1C_VERSION} --verbose sync --limit 1"
+                        def command = "gitsync"
+
+                        if(env.PATH_TO_1C != null && !env.PATH_TO_1C.isEmpty()) {
+                            command = command + " --v8-path ${env.PATH_TO_1C}"
+                        }
+                        else {
+                            command = command + " --v8version ${params.PLATFORM_1C_VERSION}"
+                        }
+
+                        command = command + " --verbose sync --limit 1"
 
                         if(params.ERROR_COMMENT) {
                             command = command + " --error-comment"
