@@ -8,6 +8,6 @@ if (isUnix()) {
     // env.ONE_SCRIPT_PATH="/usr/bin/oscript"
 } else {
     env.PLATFORM_1C_VERSION = "8.3.12"
-    env.PATH_TO_1C = "\\\\rusklimat.ru\\app\\1Cv8ADM\\8.3.12.1685_CR\\bin\\1cv8.exe"
+    //env.PATH_TO_1C = "\\\\rusklimat.ru\\app\\1Cv8ADM\\8.3.12.1685_CR\\bin\\1cv8.exe"
     env.RAC_PATH = "\\\\rusklimat.ru\\app\\1Cv8ADM\\8.3.16.1063\\bin\\rac.exe"
 }
